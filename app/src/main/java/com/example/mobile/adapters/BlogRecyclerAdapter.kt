@@ -12,7 +12,7 @@ import com.example.mobile.R
 import com.example.mobile.models.BlogPost
 import kotlin.collections.ArrayList
 import com.google.firebase.database.FirebaseDatabase
-
+//
 
 class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
