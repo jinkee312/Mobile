@@ -1,25 +1,29 @@
 package com.example.mobile.adapters
 
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_blog_list_item.view.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mobile.R
 import com.example.mobile.models.BlogPost
+import com.example.mobile.models.Course
 import kotlin.collections.ArrayList
 import com.google.firebase.database.FirebaseDatabase
 //
 
-class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class BlogRecyclerAdapter (val courseList: List<Course>, val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
 
     private val TAG: String = "AppDebug"
 
-    private var items: List<BlogPost> = ArrayList()
+//    private var items: List<BlogPost> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return BlogViewHolder(
@@ -31,42 +35,34 @@ class BlogRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         when(holder) {
 
             is BlogViewHolder -> {
-                holder.bind(items.get(position))
+                holder.bind(courseList[position])
+                Log.d("sad", "sad")
             }
 
         }
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return courseList.size
     }
 
-    fun submitList(blogList: List<BlogPost>){
-        items = blogList
-    }
+//    fun submitList(courseList: List<Course>){
+//        this.courseList = courseList
+//    }
 
-    class BlogViewHolder
-    constructor(
-        itemView: View
-    ): RecyclerView.ViewHolder(itemView){
+    class BlogViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+//    constructor(
+//        itemView: View
+//    ): RecyclerView.ViewHolder(itemView){
 
         //   val blog_image = itemView.blog_image
-        val blog_title = itemView.blog_title
-        val blog_author = itemView.blog_author
+        val blog_title = itemView.findViewById(R.id.blog_title) as TextView
+        val blog_author = itemView.findViewById(R.id.blog_author) as TextView
 
-        fun bind(blogPost: BlogPost){
+        fun bind(course: Course){
 
-            val requestOptions = RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
-
-            Glide.with(itemView.context)
-                .applyDefaultRequestOptions(requestOptions)
-//                .load(blogPost.image)
-            // .into(blog_image)
-            blog_title.setText(blogPost.title)
-            blog_author.setText(blogPost.username)
-
+            blog_title.setText(course.title)
+            blog_author.setText(course.username)
         }
 
     }
