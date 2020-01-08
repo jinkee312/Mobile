@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/btn_deletecourse"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -36,7 +36,7 @@
                 app:srcCompat="@drawable/ic_delete" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/btn_editcourse"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
